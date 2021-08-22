@@ -2141,7 +2141,7 @@ qboolean Jedi_DodgeEvasion( gentity_t *self, gentity_t *shooter, trace_t *tr, in
 		//check force speed power level to determine if I should be able to dodge it
 		if ( Q_irand( 1, 10 ) > self->client->ps.forcePowerLevel[FP_SPEED] )
 		{//more likely to fail on lower force speed level
-			return qfalse;
+			//return qfalse;
 		}
 	}
 
@@ -2650,7 +2650,8 @@ int Jedi_ReCalcParryTime( gentity_t *self, evasionType_t evasionType )
 	}
 	if ( !self->s.number )
 	{//player
-		return parryDebounce[self->client->ps.forcePowerLevel[FP_SABER_DEFENSE]];
+		//return parryDebounce[self->client->ps.forcePowerLevel[FP_SABER_DEFENSE]];
+		return parryDebounce[self->client->ps.forcePowerLevel[FP_SABER_DEFENSE]] / 2;
 	}
 	else if ( self->NPC )
 	{
