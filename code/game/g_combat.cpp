@@ -5983,7 +5983,8 @@ void G_Damage( gentity_t *targ, gentity_t *inflictor, gentity_t *attacker, const
 		*/
 	}
 
-	knockback = damage;
+	//knockback = damage;
+	knockback = damage / 2;
 
 	//Attempt to apply extra knockback
 	if ( dflags & DAMAGE_EXTRA_KNOCKBACK )
