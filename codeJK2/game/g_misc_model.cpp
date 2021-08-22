@@ -108,14 +108,14 @@ void HealthStationSettings(gentity_t *ent)
 		switch (g_spskill->integer)
 		{
 		case 0:	//	EASY
-			ent->count = 100;
+			ent->count = 75;
 			break;
 		case 1:	//	MEDIUM
 			ent->count = 75;
 			break;
 		default :
 		case 2:	//	HARD
-			ent->count = 50;
+			ent->count = 75;
 			break;
 		}
 	}
