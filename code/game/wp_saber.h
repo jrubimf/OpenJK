@@ -50,7 +50,7 @@ along with this program; if not, see <http://www.gnu.org/licenses/>.
 #define	SABER_MAX_DIST	400.0f
 #define	SABER_MAX_DIST_SQUARED	(SABER_MAX_DIST*SABER_MAX_DIST)
 
-#define	FORCE_POWER_MAX	100
+#define	FORCE_POWER_MAX	150 // 100
 
 #define	SABER_REFLECT_MISSILE_CONE	0.2f
 
@@ -142,7 +142,7 @@ enum
 
 #define	PLAYER_KNOCKDOWN_HOLD_EXTRA_TIME	4000	//player stays down after a knockdown for 4 whole seconds before automatically doing one of the slow get-ups
 
-#define MAX_WALL_GRAB_SLOPE	0.2f
+#define MAX_WALL_GRAB_SLOPE	4000 // 0.2f
 
 //"Matrix" effect flags
 #define MEF_NO_TIMESCALE		0x000001	//no timescale
