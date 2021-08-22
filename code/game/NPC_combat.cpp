@@ -3246,16 +3246,20 @@ void NPC_AimAdjust( int change )
 	}
 }
 
-void G_AimSet( gentity_t *self, int aim )
+// RUBIMEDIT
+// EVERYONE IS A DECENT SHOOTER
+void G_AimSet(gentity_t* self, int aim)
 {
-	if ( self->NPC )
+	if (self->NPC)
 	{
-		self->NPC->currentAim = aim;
+		//self->NPC->currentAim = aim;
+		self->NPC->currentAim = 1000;
 		//Com_Printf( "%s new aim = %d\n", self->NPC_type, self->NPC->currentAim );
 
-		int debounce = 500+(3-g_spskill->integer)*100;
-		TIMER_Set( self, "aimDebounce", Q_irand( debounce,debounce+1000 ) );
-	//	int debounce = 1000+(3-g_spskill->integer)*500;
-	//	TIMER_Set( self, "aimDebounce", Q_irand( debounce,debounce+2000 ) );
+		//int debounce = 500+(3-g_spskill->integer)*100;
+		int debounce = 1;
+		TIMER_Set(self, "aimDebounce", Q_irand(debounce, debounce + 1000));
+		//	int debounce = 1000+(3-g_spskill->integer)*500;
+		//	TIMER_Set( self, "aimDebounce", Q_irand( debounce,debounce+2000 ) );
 	}
 }
