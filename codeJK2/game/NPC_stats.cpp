@@ -368,8 +368,8 @@ qboolean G_ParseAnimationFile( const char *af_filename )
 	}
 	if ( len >= (int)sizeof(text) - 1 )
 	{
-		G_Error( "G_ParseAnimationFile: File %s too long\n (%d > %d)", af_filename, len, sizeof( text ) - 1);
-		return qfalse;
+		//G_Error("G_ParseAnimationFile: File %s too long\n (%d > %d)", af_filename, len, sizeof(text) - 1);
+		//return qfalse;
 	}
 	len = gi.RE_GetAnimationCFG(af_filename, text, sizeof(text));
 

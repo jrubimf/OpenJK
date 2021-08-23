@@ -903,8 +903,8 @@ qboolean G_ParseAnimationFile(int glaIndex, const char *skeletonName, int fileIn
 	}
 	if ( len >= (int)(sizeof( text ) - 1) )
 	{
-		G_Error( "G_ParseAnimationFile: File %s too long\n (%d > %d)", skeletonName, len, sizeof( text ) - 1);
-		return qfalse;
+		//G_Error( "G_ParseAnimationFile: File %s too long\n (%d > %d)", skeletonName, len, sizeof( text ) - 1);
+		//return qfalse;
 	}
 
 
