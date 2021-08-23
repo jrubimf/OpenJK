@@ -59,6 +59,11 @@ static void WP_BowcasterMainFire( gentity_t *ent )
 		}
 	}
 
+	if (ent->client && ent->client->ps.clientNum == 0 && ent->client->playerTeam == TEAM_PLAYER)
+	{
+		damage *= 0.5f;
+	}
+
 	count = ( level.time - ent->client->ps.weaponChargeTime ) / BOWCASTER_CHARGE_UNIT;
 
 	if ( count < 1 )

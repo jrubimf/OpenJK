@@ -48,14 +48,14 @@ void WP_FireBlasterMissile( gentity_t *ent, vec3_t start, vec3_t dir, qboolean a
 		// If an enemy is shooting at us, lower the velocity so you have a chance to evade
 		if ( ent->client && ent->client->ps.clientNum != 0 && ent->client->NPC_class != CLASS_BOBAFETT )
 		{
-			if ( g_spskill->integer < 2 )
-			{
-				velocity *= BLASTER_NPC_VEL_CUT;
-			}
-			else
-			{
-				velocity *= BLASTER_NPC_HARD_VEL_CUT;
-			}
+			//if ( g_spskill->integer < 2 )
+			//{
+				//velocity *= BLASTER_NPC_VEL_CUT;
+			//}
+			//else
+			//{
+				//velocity *= BLASTER_NPC_HARD_VEL_CUT;
+			//}
 		}
 	}
 
@@ -94,6 +94,12 @@ void WP_FireBlasterMissile( gentity_t *ent, vec3_t start, vec3_t dir, qboolean a
 //			damage *= 2;
 //		}
 //	}
+
+	//damage half to allied
+	if (ent->client && ent->client->ps.clientNum == 0 && ent->client->playerTeam == TEAM_PLAYER)
+	{
+		damage *= 0.5f;
+	}
 
 	missile->damage = damage;
 	missile->dflags = DAMAGE_DEATH_KNOCKBACK;

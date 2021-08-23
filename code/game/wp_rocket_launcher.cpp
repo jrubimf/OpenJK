@@ -95,7 +95,6 @@ void rocketThink( gentity_t *ent )
 
 		VectorSubtract( org, ent->currentOrigin, targetdir );
 		VectorNormalize( targetdir );
-
 		// Now the rocket can't do a 180 in space, so we'll limit the turn to about 45 degrees.
 		dot = DotProduct( targetdir, ent->movedir );
 
@@ -210,6 +209,11 @@ void WP_FireRocket( gentity_t *ent, qboolean alt_fire )
 		{
 			damage = damage/2;
 		}
+	}
+
+	if (ent->client && ent->client->ps.clientNum == 0 && ent->client->playerTeam == TEAM_PLAYER)
+	{
+		damage *= 0.5f;
 	}
 
 	if ( alt_fire )
