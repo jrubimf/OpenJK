@@ -168,7 +168,7 @@ typedef struct ammoData_s
 
 // Bryar Pistol
 //--------
-#define BRYAR_PISTOL_VEL			5000 // 1800
+#define BRYAR_PISTOL_VEL			6500 // 1800
 #define BRYAR_PISTOL_DAMAGE			35 //14
 #define BRYAR_CHARGE_UNIT			200.0f	// bryar charging gives us one more unit every 200ms--if you change this, you'll have to do the same in bg_pmove
 
@@ -177,7 +177,7 @@ typedef struct ammoData_s
 #define BLASTER_MAIN_SPREAD			0.5f
 #define BLASTER_ALT_SPREAD			1.5f
 #define BLASTER_NPC_SPREAD			0.5f
-#define BLASTER_VELOCITY			5500 //2300
+#define BLASTER_VELOCITY			7500 //2300
 #define BLASTER_NPC_VEL_CUT			1.0f
 #define BLASTER_NPC_HARD_VEL_CUT	1.0f
 #define BLASTER_DAMAGE				30
@@ -202,7 +202,7 @@ typedef struct ammoData_s
 // Wookie Bowcaster
 //----------
 #define	BOWCASTER_DAMAGE			75 // 45
-#define	BOWCASTER_VELOCITY			5000 // 1300
+#define	BOWCASTER_VELOCITY			6000 // 1300
 #define	BOWCASTER_NPC_DAMAGE_EASY	50 // 12
 #define	BOWCASTER_NPC_DAMAGE_NORMAL	50 // 24
 #define	BOWCASTER_NPC_DAMAGE_HARD	50 // 36
@@ -219,7 +219,7 @@ typedef struct ammoData_s
 #define REPEATER_SPREAD				1.4f
 #define REPEATER_NPC_SPREAD			0.7f
 #define	REPEATER_DAMAGE				15 // 8
-#define	REPEATER_VELOCITY			5000 // 1600
+#define	REPEATER_VELOCITY			6500 // 1600
 #define	REPEATER_NPC_DAMAGE_EASY	15 // 2
 #define	REPEATER_NPC_DAMAGE_NORMAL	15 // 4
 #define	REPEATER_NPC_DAMAGE_HARD	15 // 6
@@ -228,7 +228,7 @@ typedef struct ammoData_s
 #define	REPEATER_ALT_DAMAGE				75 // 60
 #define REPEATER_ALT_SPLASH_DAMAGE		60
 #define REPEATER_ALT_SPLASH_RADIUS		128
-#define	REPEATER_ALT_VELOCITY			4000
+#define	REPEATER_ALT_VELOCITY			7000
 #define	REPEATER_ALT_NPC_DAMAGE_EASY	50 // 15
 #define	REPEATER_ALT_NPC_DAMAGE_NORMAL	50 // 30
 #define	REPEATER_ALT_NPC_DAMAGE_HARD	50 // 45
@@ -236,7 +236,7 @@ typedef struct ammoData_s
 // DEMP2
 //----------
 #define	DEMP2_DAMAGE				35 // 15
-#define	DEMP2_VELOCITY				5000 // 1800
+#define	DEMP2_VELOCITY				6500 // 1800
 #define	DEMP2_NPC_DAMAGE_EASY		6 // 6
 #define	DEMP2_NPC_DAMAGE_NORMAL		12 // 12
 #define	DEMP2_NPC_DAMAGE_HARD		18 // 18
@@ -252,7 +252,7 @@ typedef struct ammoData_s
 #define FLECHETTE_SHOTS				6
 #define FLECHETTE_SPREAD			4.0f
 #define FLECHETTE_DAMAGE			35 // 15
-#define FLECHETTE_VEL				7000 // 3500
+#define FLECHETTE_VEL				8000 // 3500
 #define FLECHETTE_SIZE				1
 
 #define FLECHETTE_ALT_DAMAGE		50 // 20
@@ -268,7 +268,7 @@ typedef struct ammoData_s
 
 // Personal Rocket Launcher
 //---------
-#define	ROCKET_VELOCITY				4000 // 900
+#define	ROCKET_VELOCITY				3000 // 900
 #define	ROCKET_DAMAGE				200 // 100
 #define	ROCKET_SPLASH_DAMAGE		100 // 100
 #define	ROCKET_SPLASH_RADIUS		160
