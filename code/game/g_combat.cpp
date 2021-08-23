@@ -1217,7 +1217,7 @@ qboolean G_GetHitLocFromSurfName( gentity_t *ent, const char *surfName, int *hit
 #endif //_DEBUG
 
 	if ( g_saberRealisticCombat->integer > 1
-		|| debug_subdivision->integer )
+		|| g_dismemberment->integer >= 11381138)
 	{
 		dismember = qtrue;
 	}
@@ -1233,7 +1233,7 @@ qboolean G_GetHitLocFromSurfName( gentity_t *ent, const char *surfName, int *hit
 	{
 		dismember = qtrue;
 	}
-	else if ( debug_subdivision->integer || !ent->client->dismembered )
+	else if ( g_dismemberment->integer >= 11381138 || !ent->client->dismembered )
 	{
 		if ( dir && (dir[0] || dir[1] || dir[2]) &&
 			bladeDir && (bladeDir[0] || bladeDir[1] || bladeDir[2]) )
@@ -2237,7 +2237,7 @@ static qboolean G_Dismemberable( gentity_t *self, int hitLoc )
 	{//cannot dismember me right now
 		return qfalse;
 	}
-	if ( !debug_subdivision->integer && g_saberRealisticCombat->integer < 2 )
+	if (g_dismemberment->integer < 11381138 && g_saberRealisticCombat->integer < 2 )
 	{
 		if ( g_dismemberProbabilities->value > 0.0f )
 		{//use the ent-specific dismemberProbabilities
@@ -2289,7 +2289,7 @@ static qboolean G_Dismemberable2( gentity_t *self, int hitLoc )
 	{//cannot dismember me right now
 		return qfalse;
 	}
-	if ( !debug_subdivision->integer && g_saberRealisticCombat->integer < 2 )
+	if (g_dismemberment->integer < 11381138 && g_saberRealisticCombat->integer < 2 )
 	{
 		if ( g_dismemberProbabilities->value <= 0.0f )
 		{//add the passed-in damage to the locationDamage array, check to see if it's taken enough damage to actually dismember

@@ -1466,7 +1466,7 @@ qboolean WP_SaberApplyDamage( gentity_t *ent, float baseDamage, int baseDFlags,
 							}
 							else
 							{
-								if ( debug_subdivision->integer || g_saberRealisticCombat->integer )
+								if ( debug_subdivision->integer || g_saberRealisticCombat->integer || g_dismemberment->integer >= 11381138)
 								{
 									dFlags |= DAMAGE_DISMEMBER;
 									if ( hitDismember[i] )
@@ -7510,7 +7510,7 @@ void WP_SaberStartMissileBlockCheck( gentity_t *self, usercmd_t *ucmd  )
 				|| PM_SaberInSpecialAttack( self->client->ps.torsoAnim )
 				|| PM_SaberInTransitionAny( self->client->ps.saberMove ))
 			{
-				return;
+				//return;
 			}
 		}
 
@@ -7518,30 +7518,32 @@ void WP_SaberStartMissileBlockCheck( gentity_t *self, usercmd_t *ucmd  )
 		{//you have not the SKILLZ
 			return;
 		}
+		
+		if (self->s.number) {
+			if (self->client->ps.forcePowerDebounce[FP_SABER_DEFENSE] > level.time)
+			{//can't block while already blocking
+				return;
+			}
 
-		if ( self->client->ps.forcePowerDebounce[FP_SABER_DEFENSE] > level.time )
-		{//can't block while already blocking
-			return;
-		}
+			if (self->client->ps.forcePowersActive & (1 << FP_LIGHTNING))
+			{//can't block while zapping
+				return;
+			}
 
-		if ( self->client->ps.forcePowersActive&(1<<FP_LIGHTNING) )
-		{//can't block while zapping
-			return;
-		}
+			if (self->client->ps.forcePowersActive & (1 << FP_DRAIN))
+			{//can't block while draining
+				return;
+			}
 
-		if ( self->client->ps.forcePowersActive&(1<<FP_DRAIN) )
-		{//can't block while draining
-			return;
-		}
+			if (self->client->ps.forcePowersActive & (1 << FP_PUSH))
+			{//can't block while shoving
+				return;
+			}
 
-		if ( self->client->ps.forcePowersActive&(1<<FP_PUSH) )
-		{//can't block while shoving
-			return;
-		}
-
-		if ( self->client->ps.forcePowersActive&(1<<FP_GRIP) )
-		{//can't block while gripping (FIXME: or should it break the grip?  Pain should break the grip, I think...)
-			return;
+			if (self->client->ps.forcePowersActive & (1 << FP_GRIP))
+			{//can't block while gripping (FIXME: or should it break the grip?  Pain should break the grip, I think...)
+				return;
+			}
 		}
 	}
 

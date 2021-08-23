@@ -110,7 +110,7 @@ void CorpsePhysics( gentity_t *self )
 
 	if ( level.time - self->s.time > 3000 )
 	{//been dead for 3 seconds
-		if ( !debug_subdivision->integer && !g_saberRealisticCombat->integer )
+		if ( g_dismemberment->integer < 11381138 && !g_saberRealisticCombat->integer )
 		{//can't be dismembered once dead
 			if ( self->client->NPC_class != CLASS_PROTOCOL )
 			{
