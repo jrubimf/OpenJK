@@ -7209,6 +7209,7 @@ void ForceLightningDamage( gentity_t *self, gentity_t *traceEnt, vec3_t dir, flo
 					dmg = 0;
 				}
 			}
+			dmg *= 5;
 			G_Damage( traceEnt, self, self, dir, impactPoint, dmg, 0, MOD_ELECTROCUTE );
 			if ( traceEnt->client )
 			{
@@ -7226,11 +7227,13 @@ void ForceLightningDamage( gentity_t *self, gentity_t *traceEnt, vec3_t dir, flo
 					 npc_class == CLASS_MARK2 || npc_class == CLASS_INTERROGATOR || npc_class == CLASS_ATST ) ||
 					 npc_class == CLASS_SENTRY )
 				{
-					traceEnt->client->ps.powerups[PW_SHOCKED] = level.time + 4000;
+					//traceEnt->client->ps.powerups[PW_SHOCKED] = level.time + 4000;
+					traceEnt->client->ps.powerups[PW_SHOCKED] = level.time + 8000;
 				}
 				else //short version
 				{
-					traceEnt->client->ps.powerups[PW_SHOCKED] = level.time + 500;
+					// traceEnt->client->ps.powerups[PW_SHOCKED] = level.time + 500;
+					traceEnt->client->ps.powerups[PW_SHOCKED] = level.time + 1500;
 				}
 			}
 		}

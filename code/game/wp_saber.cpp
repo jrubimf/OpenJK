@@ -11065,10 +11065,10 @@ void ForceLightningDamage( gentity_t *self, gentity_t *traceEnt, vec3_t dir, flo
 					&& !PM_InSpecialJump( traceEnt->client->ps.torsoAnim )
 					&& (!traceEnt->s.number||(traceEnt->NPC&&traceEnt->NPC->rank>=RANK_LT_COMM)) )//the player or a tough jedi/reborn
 				{
-					if ( Q_irand( 0, traceEnt->client->ps.forcePowerLevel[FP_SABER_DEFENSE]*3 ) > 0 )//more of a chance of defending if saber defense is high
-					{
+					//if ( Q_irand( 0, traceEnt->client->ps.forcePowerLevel[FP_SABER_DEFENSE]*3 ) > 0 )//more of a chance of defending if saber defense is high
+					//{
 						dmg = 0;
-					}
+					//}
 					if ( (traceEnt->client->ps.forcePowersActive&(1<<FP_ABSORB))
 						&& traceEnt->client->ps.forcePowerLevel[FP_ABSORB] > FORCE_LEVEL_2 )
 					{//no parry, just absorb
@@ -11124,6 +11124,7 @@ void ForceLightningDamage( gentity_t *self, gentity_t *traceEnt, vec3_t dir, flo
 			//FIXME: if ForceDrain, sap force power and add health to self, use different sound & effects
 			if ( dmg )
 			{
+				dmg *= 5;
 				G_Damage( traceEnt, self, self, dir, impactPoint, dmg, 0, MOD_FORCE_LIGHTNING );
 			}
 			if ( traceEnt->client )
@@ -11142,11 +11143,13 @@ void ForceLightningDamage( gentity_t *self, gentity_t *traceEnt, vec3_t dir, flo
 					 npc_class == CLASS_MARK2 || npc_class == CLASS_INTERROGATOR || npc_class == CLASS_ATST ) ||
 					 npc_class == CLASS_SENTRY )
 				{
-					traceEnt->client->ps.powerups[PW_SHOCKED] = level.time + 4000;
+					//traceEnt->client->ps.powerups[PW_SHOCKED] = level.time + 4000;
+					traceEnt->client->ps.powerups[PW_SHOCKED] = level.time + 8000;
 				}
 				else //short version
 				{
 					traceEnt->client->ps.powerups[PW_SHOCKED] = level.time + 500;
+					traceEnt->client->ps.powerups[PW_SHOCKED] = level.time + 1500;
 				}
 			}
 		}
