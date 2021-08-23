@@ -27,17 +27,17 @@ along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 // ATST Main
 //---------------------------------------------------------
-void WP_ATSTMainFire( gentity_t *ent )
+void WP_ATSTMainFire(gentity_t* ent)
 //---------------------------------------------------------
 {
 	float vel = ATST_MAIN_VEL;
 
-//	if ( ent->client && (ent->client->ps.eFlags & EF_IN_ATST ))
-//	{
-//		vel = 4500.0f;
-//	}
+	//	if ( ent->client && (ent->client->ps.eFlags & EF_IN_ATST ))
+	//	{
+	//		vel = 4500.0f;
+	//	}
 
-	if ( !ent->s.number )
+	if (!ent->s.number)
 	{
 		// player shoots faster
 		vel *= 1.6f;
@@ -45,12 +45,24 @@ void WP_ATSTMainFire( gentity_t *ent )
 
 	WP_MissileTargetHint(ent, muzzle, forwardVec);
 
-	gentity_t	*missile = CreateMissile( muzzle, forwardVec, vel, 10000, ent );
+	gentity_t* missile = CreateMissile(muzzle, forwardVec, vel, 10000, ent);
 
 	missile->classname = "atst_main_proj";
 	missile->s.weapon = WP_ATST_MAIN;
 
-	missile->damage = weaponData[WP_ATST_MAIN].damage;
+	//damage half to allied
+	float damage = 0;
+	if (ent->client && ent->client->ps.clientNum == 0 && ent->client->playerTeam == TEAM_PLAYER)
+	{
+		damage = weaponData[WP_ATST_MAIN].damage * 0.5f;
+	}
+	else 
+	{
+		damage = weaponData[WP_ATST_MAIN].damage;
+	}
+
+	missile->damage = damage;
+
 	missile->dflags = DAMAGE_DEATH_KNOCKBACK|DAMAGE_HEAVY_WEAP_CLASS;
 	missile->methodOfDeath = MOD_ENERGY;
 	missile->clipmask = MASK_SHOT | CONTENTS_LIGHTSABER;
@@ -105,6 +117,12 @@ void WP_ATSTSideAltFire( gentity_t *ent )
 	VectorSet( missile->maxs, ATST_SIDE_ALT_ROCKET_SIZE, ATST_SIDE_ALT_ROCKET_SIZE, ATST_SIDE_ALT_ROCKET_SIZE );
 	VectorScale( missile->maxs, -1, missile->mins );
 
+	//damage half to allied
+	if (ent->client && ent->client->ps.clientNum == 0 && ent->client->playerTeam == TEAM_PLAYER)
+	{
+		damage *= 0.5f;
+	}
+
 	missile->damage = damage;
 	missile->dflags = DAMAGE_DEATH_KNOCKBACK | DAMAGE_HEAVY_WEAP_CLASS;
 	missile->methodOfDeath = MOD_EXPLOSIVE;
@@ -150,6 +168,12 @@ void WP_ATSTSideFire( gentity_t *ent )
 
 	VectorSet( missile->maxs, ATST_SIDE_MAIN_SIZE, ATST_SIDE_MAIN_SIZE, ATST_SIDE_MAIN_SIZE );
 	VectorScale( missile->maxs, -1, missile->mins );
+
+	//damage half to allied
+	if (ent->client && ent->client->ps.clientNum == 0 && ent->client->playerTeam == TEAM_PLAYER)
+	{
+		damage *= 0.5f;
+	}
 
 	missile->damage = damage;
 	missile->dflags = DAMAGE_DEATH_KNOCKBACK|DAMAGE_HEAVY_WEAP_CLASS;
