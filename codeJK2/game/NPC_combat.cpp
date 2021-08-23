@@ -265,10 +265,10 @@ void G_AttackDelay( gentity_t *self, gentity_t *enemy )
 			}
 			break;
 		case WP_FLECHETTE:
-			attDelay += Q_irand( 500, 1500 );
+			attDelay += Q_irand(1500, 2500);
 			break;
 		case WP_ROCKET_LAUNCHER:
-			attDelay += Q_irand( 500, 1500 );
+			attDelay += Q_irand(1500, 2500);
 			break;
 		case WP_BLASTER_PISTOL:	// apparently some enemy only version of the blaster
 			attDelay -= Q_irand( 500, 1500 );
@@ -277,7 +277,7 @@ void G_AttackDelay( gentity_t *self, gentity_t *enemy )
 			return;
 			break;
 		case WP_THERMAL://grenade-throwing has a built-in delay
-			return;
+			attDelay -= Q_irand(2000, 4000);
 			break;
 		case WP_MELEE:			// Any ol' melee attack
 			return;
@@ -313,9 +313,9 @@ void G_AttackDelay( gentity_t *self, gentity_t *enemy )
 
 		if ( self->client->playerTeam == TEAM_PLAYER )
 		{//clamp it
-			if ( attDelay > 2000 )
+			if ( attDelay > 1000 )
 			{
-				attDelay = 2000;
+				attDelay = 1000;
 			}
 		}
 

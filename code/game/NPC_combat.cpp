@@ -312,10 +312,10 @@ void G_AttackDelay( gentity_t *self, gentity_t *enemy )
 			}
 			break;
 		case WP_FLECHETTE:
-			attDelay += Q_irand( 500, 1500 );
+			attDelay += Q_irand( 1500, 2500 );
 			break;
 		case WP_ROCKET_LAUNCHER:
-			attDelay += Q_irand( 500, 1500 );
+			attDelay += Q_irand( 1500, 2500 );
 			break;
 		case WP_CONCUSSION:
 			attDelay += Q_irand( 500, 1500 );
@@ -327,7 +327,7 @@ void G_AttackDelay( gentity_t *self, gentity_t *enemy )
 			return;
 			break;
 		case WP_THERMAL://grenade-throwing has a built-in delay
-			return;
+			attDelay -= Q_irand(2000, 4000);
 			break;
 		case WP_MELEE:			// Any ol' melee attack
 			return;
@@ -366,9 +366,9 @@ void G_AttackDelay( gentity_t *self, gentity_t *enemy )
 
 		if ( self->client->playerTeam == TEAM_PLAYER )
 		{//clamp it
-			if ( attDelay > 2000 )
+			if ( attDelay > 1000 )
 			{
-				attDelay = 2000;
+				attDelay = 1000;
 			}
 		}
 
@@ -387,7 +387,6 @@ void G_AttackDelay( gentity_t *self, gentity_t *enemy )
 		{
 			attDelay -= Q_irand(500, 1500);
 		}
-
 		TIMER_Set( self, "roamTime", attDelay );//was Q_irand( 1000, 3500 );
 	}
 }
@@ -3219,7 +3218,8 @@ void NPC_AimAdjust( int change )
 {
 	if ( !TIMER_Exists( NPC, "aimDebounce" ) )
 	{
-		int debounce = 500+(3-g_spskill->integer)*100;
+		//int debounce = 500+(3-g_spskill->integer)*100;
+		int debounce = 2000;
 		TIMER_Set( NPC, "aimDebounce", Q_irand( debounce,debounce+1000 ) );
 		//int debounce = 1000+(3-g_spskill->integer)*500;
 		//TIMER_Set( NPC, "aimDebounce", Q_irand( debounce, debounce+2000 ) );
@@ -3237,9 +3237,11 @@ void NPC_AimAdjust( int change )
 			NPCInfo->currentAim = -30;
 		}
 
+		NPCInfo->currentAim = -15;
 		//Com_Printf( "%s new aim = %d\n", NPC->NPC_type, NPCInfo->currentAim );
 
-		int debounce = 500+(3-g_spskill->integer)*100;
+		//int debounce = 500+(3-g_spskill->integer)*100;
+		int debounce = 2000;
 		TIMER_Set( NPC, "aimDebounce", Q_irand( debounce,debounce+1000 ) );
 		//int debounce = 1000+(3-g_spskill->integer)*500;
 		//TIMER_Set( NPC, "aimDebounce", Q_irand( debounce, debounce+2000 ) );
@@ -3253,11 +3255,11 @@ void G_AimSet(gentity_t* self, int aim)
 	if (self->NPC)
 	{
 		//self->NPC->currentAim = aim;
-		self->NPC->currentAim = 1000;
+		self->NPC->currentAim = -15;
 		//Com_Printf( "%s new aim = %d\n", self->NPC_type, self->NPC->currentAim );
 
 		//int debounce = 500+(3-g_spskill->integer)*100;
-		int debounce = 1;
+		int debounce = 2000;
 		TIMER_Set(self, "aimDebounce", Q_irand(debounce, debounce + 1000));
 		//	int debounce = 1000+(3-g_spskill->integer)*500;
 		//	TIMER_Set( self, "aimDebounce", Q_irand( debounce,debounce+2000 ) );
