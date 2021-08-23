@@ -41,6 +41,11 @@ void WP_EmplacedFire( gentity_t *ent )
 	missile->classname = "emplaced_proj";
 	missile->s.weapon = WP_EMPLACED_GUN;
 
+	if (ent->client && ent->client->ps.clientNum == 0 && ent->client->playerTeam == TEAM_PLAYER)
+	{
+		damage *= 0.5f;
+	}
+
 	missile->damage = damage; 
 	missile->dflags = DAMAGE_DEATH_KNOCKBACK | DAMAGE_HEAVY_WEAP_CLASS;
 	missile->methodOfDeath = MOD_EMPLACED;

@@ -114,6 +114,11 @@ static void WP_BowcasterMainFire( gentity_t *ent )
 //			missile->flags |= FL_OVERCHARGED;
 //		}
 
+		if (ent->client && ent->client->ps.clientNum == 0 && ent->client->playerTeam == TEAM_PLAYER)
+		{
+			damage *= 0.5f;
+		}
+
 		missile->damage = damage;
 		missile->dflags = DAMAGE_DEATH_KNOCKBACK;
 		missile->methodOfDeath = MOD_BOWCASTER;
